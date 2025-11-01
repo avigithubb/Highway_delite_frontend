@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import PricePallete from './PricePallete';
 import Navbar from './layout/Navbar';
 import { useAuth } from './AuthContext';
+import { Link } from 'react-router-dom';
 
 const Details = () => {
     const {bookingData, setBookingData} = useAuth();
@@ -39,7 +40,7 @@ const Details = () => {
 
     useEffect(()=>{
         if(for_date.day != 0){
-            fetch(`http://localhost:3000/slots/${for_date.day}`)
+            fetch(`https://highway-delite-backend-3n56.onrender.com/slots/${for_date.day}`)
             .then(res => res.json())
             .then(data => {
                 setSlots(data);
@@ -58,9 +59,9 @@ const Details = () => {
     return (
         <>
             <Navbar />
-            <div className='flex justify-between px-20 py-5 m-auto'>
-                <div className='text-black text-left flex flex-col gap-5'>
-                    <a href="/" className='float-left text-black'>← Details</a>
+            <div className='flex flex-col lg:flex-row justify-between px-0 lg:px-20 py-5 m-auto w-[90%] lg:w-[100%]'>
+                <div className='text-black text-left flex flex-col gap-5 '>
+                    <Link to="/" className='float-left text-black'>← Details</Link>
                     <img src={bookingData.img} alt="detail-img" className='w-[50vw] h-[50vh] rounded' />
                     <h2 className='text-lg'><b>{bookingData.destination}</b></h2>
                     <p className='text-gray-500'>Curated small-group experience. Certified guide. Safety first with gear included. Helmet and life jackets along with an expert with accompany in kayaking.</p>

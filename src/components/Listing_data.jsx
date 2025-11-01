@@ -43,7 +43,7 @@ const Listing = () => {
     useEffect(()=>{
         if(isSubmit){
             console.log(data.destination, data.location, data.price)
-            fetch("http://localhost:3000/upload-experience", {
+            fetch("https://highway-delite-backend-3n56.onrender.com/upload-experience", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -58,7 +58,7 @@ const Listing = () => {
             .then(res => res.json())
             .then(data=> {
                 console.log(data.message);
-                navigateTo("/listing");
+                navigateTo("/");
             })
         }
     },[isSubmit])

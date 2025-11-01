@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './layout/Navbar';
 import PricePallete from './PricePallete';
 import { useAuth } from './AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Checkout = () => {
     const [mypromo, setPromo] = useState(null);
@@ -44,7 +44,7 @@ const Checkout = () => {
 
     useEffect(()=>{
         if(order){
-            fetch("http://localhost:3000/bookings", {
+            fetch("https://highway-delite-backend-3n56.onrender.com/bookings", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
@@ -74,7 +74,7 @@ const Checkout = () => {
             code: mypromo,
         }).toString();
         if(applyPromo){
-            fetch(`http://localhost:3000/promo/validate?${queryParams}`)
+            fetch(`https://highway-delite-backend-3n56.onrender.com/promo/validate?${queryParams}`)
             .then(res => res.json())
             .then(data =>{
                 if(data.message == "failure"){
@@ -89,18 +89,18 @@ const Checkout = () => {
     return (
         <>
             <Navbar />
-            <div className='grid grid-cols-2 gap-20 m-auto px-20 py-5 w-[100vw]'>
+            <div className='grid lg:grid-cols-2 lg:gap-20 m-auto px-0 lg:px-20 py-5 w-[100vw] flex flex-col lg:flex-row'>
                 <div className='flex flex-col text-left'>
-                    <a href="/details" className='float-left text-black mb-5'>← Checkout</a>
-                    <form onSubmit={handleSubmit} className='rounded bg-gray-200 text-gray-500 text-sm p-10 w-[40vw] '>
-                        <div className='flex mb-3'>
+                    <Link to="/details" className='float-left text-black mb-5'>← Checkout</Link>
+                    <form onSubmit={handleSubmit} className='rounded bg-gray-200 text-gray-500 text-sm p-10 w-[75%] lg:w-[40vw] '>
+                        <div className='flex flex-col lg:flex-row mb-3'>
                             <div className='flex flex-col'>
                                 <label htmlFor="name">Full Name</label>
-                                <input onChange={handleChange} type="text" name='name' className='bg-gray-300 rounded px-2 py-1 w-[140%]' placeholder='Your name' required />
+                                <input onChange={handleChange} type="text" name='name' className='bg-gray-300 rounded px-2 py-1 w-25 lg:w-[140%]' placeholder='Your name' required />
                             </div>
-                            <div className='flex flex-col ml-20'>
+                            <div className='flex flex-col ml-0 lg:ml-20'>
                                 <label htmlFor="email">Email</label>
-                                <input onChange={handleChange} type="text" name='email' className='bg-gray-300 rounded px-2 py-1 w-[160%]' placeholder='Email' required />
+                                <input onChange={handleChange} type="text" name='email' className='bg-gray-300 rounded px-2 py-1 w-25 lg:w-[160%]' placeholder='Email' required />
                             </div>
                             
                         </div>

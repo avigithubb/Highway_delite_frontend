@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './components/AuthContext.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
+  <BrowserRouter basename="/Highway_delite_frontend">
     <AuthProvider>
       <App />
     </AuthProvider>
